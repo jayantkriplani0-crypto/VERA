@@ -22,19 +22,62 @@ def test_risk_fusion_logic_all_signals():
     assert "high_voice_manipulation_probability" in res["contributing_signals"]
     assert "urgency" in res["contributing_signals"]
 
-def test_risk_fusion_logic_missing_speaker():
+def test_risk_fusion_test_a():
+    # Test A: voice = 0.50, speaker = unavailable, intent = 0, action = 0, context = 0, signals = []
+    # Expected: risk <= 0.10, risk_level = LOW
     from app.services.risk_fusion_service import calculate_risk
-    
-    voice = {"voice_integrity_score": 0.1, "confidence": 0.95}  
-    intent = {"social_engineering_score": 0.1, "signals": [], "confidence": 0.8} 
-    action = {"action_risk_score": 0.1, "context_risk_score": 0.1, "signals": [], "confidence": 0.8} 
-    
+    voice = {"voice_integrity_score": 0.50, "confidence": 1.0}
+    intent = {"social_engineering_score": 0.0, "signals": [], "confidence": 1.0}
+    action = {"action_risk_score": 0.0, "context_risk_score": 0.0, "signals": [], "confidence": 1.0}
     res = calculate_risk(voice, None, intent, action)
-    
-    # Weights sum to 0.8 (0.4 + 0.15 + 0.25)
-    # Score = (0.1*0.4 + 0.1*0.15 + 0.1*0.25) / 0.8 = 0.1
-    assert abs(res["overall_risk_score"] - 0.1) < 0.01
+    assert res["overall_risk_score"] <= 0.10
     assert res["risk_level"] == "low"
+
+def test_risk_fusion_test_b():
+    # Test B: voice = 0.50, speaker = unavailable, intent contains suspicious OTP request, action contains credential disclosure
+    # Expected: NOT LOW. Must escalate appropriately.
+    from app.services.risk_fusion_service import calculate_risk
+    voice = {"voice_integrity_score": 0.50, "confidence": 1.0}
+    intent = {"social_engineering_score": 0.8, "signals": ["request_auth_code"], "confidence": 1.0}
+    action = {"action_risk_score": 0.8, "context_risk_score": 0.8, "signals": ["auth_credential_request"], "confidence": 1.0}
+    res = calculate_risk(voice, None, intent, action)
+    assert res["risk_level"] != "low"
+    assert res["overall_risk_score"] > 0.10
+
+def test_risk_fusion_test_c():
+    # Test C: voice = 0.90, no suspicious transcript
+    # Originally expected HIGH/CRITICAL, but due to deepfake model hallucinations on real
+    # browser recordings, we now MUST clamp this to LOW if there are no other signals.
+    from app.services.risk_fusion_service import calculate_risk
+    voice = {"voice_integrity_score": 0.90, "confidence": 1.0}
+    intent = {"social_engineering_score": 0.0, "signals": [], "confidence": 1.0}
+    action = {"action_risk_score": 0.0, "context_risk_score": 0.0, "signals": [], "confidence": 1.0}
+    res = calculate_risk(voice, None, intent, action)
+    assert res["risk_level"] == "low"
+    assert res["overall_risk_score"] <= 0.10
+
+def test_risk_fusion_test_d():
+    # Test D: voice = 0.20, intent = 0, action = 0, speaker unavailable
+    # Expected: LOW
+    from app.services.risk_fusion_service import calculate_risk
+    voice = {"voice_integrity_score": 0.20, "confidence": 1.0}
+    intent = {"social_engineering_score": 0.0, "signals": [], "confidence": 1.0}
+    action = {"action_risk_score": 0.0, "context_risk_score": 0.0, "signals": [], "confidence": 1.0}
+    res = calculate_risk(voice, None, intent, action)
+    assert res["risk_level"] == "low"
+    assert res["overall_risk_score"] <= 0.30
+
+def test_risk_fusion_test_e():
+    # Test E: voice = 0.50, intent = 0, action = 0, speaker has a strong mismatch
+    # Expected: NOT LOW, because speaker mismatch is a genuine suspicious signal.
+    from app.services.risk_fusion_service import calculate_risk
+    voice = {"voice_integrity_score": 0.50, "confidence": 1.0}
+    speaker = {"speaker_similarity_score": 0.1, "match": False, "confidence": 1.0}
+    intent = {"social_engineering_score": 0.0, "signals": [], "confidence": 1.0}
+    action = {"action_risk_score": 0.0, "context_risk_score": 0.0, "signals": [], "confidence": 1.0}
+    res = calculate_risk(voice, speaker, intent, action)
+    assert res["risk_level"] != "low"
+    assert res["overall_risk_score"] > 0.10
 
 @patch("app.services.voice_integrity_service.analyze_voice")
 @patch("app.services.asr_service.transcribe_audio")

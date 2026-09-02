@@ -1,3 +1,5 @@
+import re
+
 def analyze_action_context(transcript: str, intent_analysis: dict) -> dict:
     """
     Lightweight deterministic/rule-based detector for action and context sensitivity.
@@ -11,25 +13,29 @@ def analyze_action_context(transcript: str, intent_analysis: dict) -> dict:
     
     intent_signals = intent_analysis.get("signals", [])
     
+    def check_keywords(keywords):
+        pattern = re.compile(r'\b(' + '|'.join(map(re.escape, keywords)) + r')\b')
+        return bool(pattern.search(text))
+    
     # --- Action Analysis ---
     
     # 1. OTP/Password/PIN requests
-    if "request_auth_code" in intent_signals or any(k in text for k in ["otp", "password", "pin", "verification code"]):
+    if "request_auth_code" in intent_signals or check_keywords(["otp", "password", "pin", "verification code"]):
         signals.append("auth_credential_request")
         action_risk_score += 0.8
         
     # 2. Money/payment/UPI/bank transfer requests
-    if "request_payment" in intent_signals or any(k in text for k in ["upi", "bank transfer", "wire", "pay now", "send money"]):
+    if "request_payment" in intent_signals or check_keywords(["upi", "bank transfer", "wire", "pay now", "send money"]):
         signals.append("financial_transaction_request")
         action_risk_score += 0.7
         
     # 3. Account or credential changes
-    if any(k in text for k in ["change password", "reset password", "update details", "verify account"]):
+    if check_keywords(["change password", "reset password", "update details", "verify account"]):
         signals.append("account_modification_request")
         action_risk_score += 0.6
         
     # 4. Requests to click/open links or install software
-    if "suspicious_action" in intent_signals or any(k in text for k in ["click", "open the link", "download", "install", "anydesk"]):
+    if "suspicious_action" in intent_signals or check_keywords(["click", "open the link", "download", "install", "anydesk"]):
         signals.append("risky_digital_action")
         action_risk_score += 0.6
         
@@ -51,13 +57,18 @@ def analyze_action_context(transcript: str, intent_analysis: dict) -> dict:
         context_risk_score += 0.7
         
     # 4. Unusual Verification Bypass or Isolation
-    if "secrecy_isolation" in intent_signals or any(k in text for k in ["bypass", "skip verification", "don't hang up"]):
+    if "secrecy_isolation" in intent_signals or check_keywords(["bypass", "skip verification", "don't hang up"]):
         signals.append("verification_bypass_isolation_context")
         context_risk_score += 0.6
         
     # Cap scores at 1.0
     action_risk_score = min(1.0, action_risk_score)
-    context_risk_score = min(1.0, context_risk_score)
+    
+    # Heuristic: No action/context risk is added unless an actual sensitive action is detected.
+    if action_risk_score == 0.0:
+        context_risk_score = 0.0
+    else:
+        context_risk_score = min(1.0, context_risk_score)
     
     # Determine Action Category
     if action_risk_score >= 0.7:

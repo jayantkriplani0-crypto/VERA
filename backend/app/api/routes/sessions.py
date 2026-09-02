@@ -26,6 +26,11 @@ def create_session(session_in: SessionCreate, db: Session = Depends(get_db)):
     return session_service.create_session(db=db, session_in=session_in)
 
 
+
+@router.get("", response_model=list[SessionResponse])
+async def list_sessions_endpoint(limit: int = 50, db: Session = Depends(get_db)):
+    return session_service.list_sessions(db, limit=limit)
+
 @router.get("/{session_id}", response_model=SessionResponse)
 def get_session(session_id: str, db: Session = Depends(get_db)):
     db_session = session_service.get_session(db=db, session_id=session_id)
@@ -37,16 +42,35 @@ def get_session(session_id: str, db: Session = Depends(get_db)):
 # ---------------------------------------------------------------------------
 # Shared audio validation helper
 # ---------------------------------------------------------------------------
-ALLOWED_EXTS = {".wav", ".mp3", ".ogg", ".flac"}
+ALLOWED_EXTS = {".wav", ".mp3", ".ogg", ".flac", ".webm", ".m4a", ".aac"}
 
 def _validate_audio(file: UploadFile, session_id: str, db: Session):
-    """Raises HTTPException if session or audio format is invalid."""
+    """Raises HTTPException if session or audio format is invalid.
+
+    Accepts WAV, MP3, OGG, FLAC (soundfile-native) and also WebM/M4A/AAC
+    that browsers may produce via MediaRecorder — audio_service will attempt
+    to decode them via librosa/audioread as a fallback.
+    """
+    import logging
+    logger = logging.getLogger("vera.sessions")
     db_session = session_service.get_session(db=db, session_id=session_id)
     if db_session is None:
         raise HTTPException(status_code=404, detail="Session not found")
     _, ext = os.path.splitext(file.filename.lower())
-    if ext not in ALLOWED_EXTS and not file.content_type.startswith("audio/"):
-        raise HTTPException(status_code=400, detail="Invalid audio format")
+    content_type = file.content_type or ""
+    logger.info(
+        "Audio upload: filename=%r ext=%r content_type=%r",
+        file.filename, ext, content_type,
+    )
+    if ext not in ALLOWED_EXTS and not content_type.startswith("audio/"):
+        raise HTTPException(
+            status_code=400,
+            detail=(
+                f"Unsupported audio format: extension={ext!r}, "
+                f"content_type={content_type!r}. "
+                "Accepted: wav, mp3, ogg, flac, webm, m4a, aac."
+            ),
+        )
     return db_session
 
 
@@ -220,6 +244,13 @@ async def evaluate_session_decision(
         action_context_analysis=action_context_result,
     )
     policy_result = policy_service.evaluate_policy(risk_result, action_context_result)
+    
+    session_service.update_session(db, session_id, {
+        "risk_level": risk_result.get("risk_level"),
+        "decision": policy_result.get("decision"),
+        "status": "completed"
+    })
+    
     return ok(session_id, {"filename": filename, "policy": policy_result})
 
 
@@ -277,6 +308,12 @@ async def generate_session_evidence(
         action_context_analysis=action_context_result,
     )
     policy_result = policy_service.evaluate_policy(risk_result, action_context_result)
+    
+    session_service.update_session(db, session_id, {
+        "risk_level": risk_result.get("risk_level"),
+        "decision": policy_result.get("decision"),
+        "status": "completed"
+    })
 
     analysis_data = {
         "voice_analysis": voice_result,

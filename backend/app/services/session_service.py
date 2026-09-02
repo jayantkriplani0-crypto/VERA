@@ -15,3 +15,15 @@ def create_session(db: Session, session_in: SessionCreate) -> SessionModel:
 
 def get_session(db: Session, session_id: str) -> SessionModel:
     return db.query(SessionModel).filter(SessionModel.session_id == session_id).first()
+
+def list_sessions(db: Session, limit: int = 50):
+    return db.query(SessionModel).order_by(SessionModel.created_at.desc()).limit(limit).all()
+
+def update_session(db: Session, session_id: str, updates: dict) -> SessionModel:
+    db_session = get_session(db, session_id)
+    if db_session:
+        for key, value in updates.items():
+            setattr(db_session, key, value)
+        db.commit()
+        db.refresh(db_session)
+    return db_session

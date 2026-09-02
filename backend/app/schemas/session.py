@@ -11,6 +11,8 @@ class SessionResponse(BaseModel):
     caller_id: Optional[str] = None
     created_at: datetime
     status: str
+    risk_level: Optional[str] = None
+    decision: Optional[str] = None
 
     class Config:
         from_attributes = True

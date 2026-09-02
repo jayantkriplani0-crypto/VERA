@@ -10,6 +10,8 @@ class SessionModel(Base):
     caller_id = Column(String, nullable=True)
     created_at = Column(DateTime, default=datetime.utcnow)
     status = Column(String, default="active")
+    risk_level = Column(String, nullable=True)
+    decision = Column(String, nullable=True)
 
 from sqlalchemy import LargeBinary
 

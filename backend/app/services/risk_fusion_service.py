@@ -76,15 +76,52 @@ def calculate_risk(voice_analysis: dict = None, speaker_analysis: dict = None, i
         overall_risk_score = min(1.0, weighted_sum / total_weight)
         final_confidence = total_confidence / confidence_weight
         
-    # Determine risk level
-    if overall_risk_score >= 0.75:
+    # Heuristic adjustment: Benign speech with no suspicious signals gets a near-zero interaction risk.
+    # We also clamp if the ONLY signal is high_voice_manipulation_probability, because the deepfake model
+    # frequently hallucinates high scores on real browser recordings, and we do not want to penalize
+    # completely benign transcripts solely based on a false-positive voice score.
+    benign_clamp_triggered = False
+    if len(signals) == 0 or (len(signals) == 1 and signals[0] == "high_voice_manipulation_probability"):
+        overall_risk_score = min(overall_risk_score, 0.1)
+        benign_clamp_triggered = True
+        
+    deepfake_escalation_triggered = False
+            
+    # Determine risk level AFTER the final calibrated overall_risk_score
+    if overall_risk_score >= 0.85:
         risk_level = "critical"
-    elif overall_risk_score >= 0.5:
+    elif overall_risk_score >= 0.60:
         risk_level = "high"
-    elif overall_risk_score >= 0.25:
+    elif overall_risk_score >= 0.30:
         risk_level = "medium"
     else:
         risk_level = "low"
+
+    import logging
+    logger = logging.getLogger("vera.risk_fusion")
+    
+    print("\n[RISK DEBUG]")
+    print(f"voice_integrity_score = {voice_analysis.get('voice_integrity_score') if voice_analysis else None}")
+    print(f"speaker_similarity_score = {speaker_analysis.get('speaker_similarity_score') if speaker_analysis else None}")
+    print(f"speaker_available = {speaker_analysis is not None}")
+    print(f"intent_risk_score = {intent_analysis.get('social_engineering_score') if intent_analysis else None}")
+    print(f"intent_signals = {intent_analysis.get('signals') if intent_analysis else None}")
+    
+    ac_score = max(
+        action_context_analysis.get('action_risk_score', 0.0), 
+        action_context_analysis.get('context_risk_score', 0.0)
+    ) if action_context_analysis else None
+    
+    print(f"action_risk_score = {ac_score}")
+    print(f"action_signals = {action_context_analysis.get('signals') if action_context_analysis else None}")
+    print(f"context_risk_score = {action_context_analysis.get('context_risk_score') if action_context_analysis else None}")
+    
+    print(f"weighted_risk_before_calibration = {weighted_sum / total_weight if total_weight > 0 else 0.0}")
+    print(f"benign_clamp_triggered = {benign_clamp_triggered}")
+    print(f"deepfake_escalation_triggered = {deepfake_escalation_triggered}")
+    print(f"final_overall_risk_score = {overall_risk_score}")
+    print(f"final_risk_level = {risk_level}")
+    print("[/RISK DEBUG]\n")
         
     return {
         "overall_risk_score": overall_risk_score,

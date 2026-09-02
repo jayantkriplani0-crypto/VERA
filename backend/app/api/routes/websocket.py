@@ -116,6 +116,11 @@ async def websocket_endpoint(
                     
                     policy_result = policy_service.evaluate_policy(risk_result, action_context_result)
                     
+                    session_service.update_session(db, session_id, {
+                        "risk_level": risk_result.get("risk_level"),
+                        "decision": policy_result.get("decision")
+                    })
+                    
                     await websocket.send_json({
                         "session_id": session_id,
                         "transcript": transcript,
