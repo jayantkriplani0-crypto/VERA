@@ -1,0 +1,13 @@
+sample_id,filename,file_path,speaker_id,attack_type,language,split,ground_truth,ground_truth_binary,raw_score,threshold,predicted_label,is_correct,error_type,duration_sec,sample_rate_hz,latency_ms
+1,SPK_001_bonafide_1.wav,C:\Users\jayan\OneDrive\Desktop\VERA\evaluation\benchmark_data\audio\SPK_001_bonafide_1.wav,SPK_001,-,en,test,bonafide,1,1.283366,-1.0625009,bonafide,True,None,3.0,16000,881.51
+2,SPK_001_spoof_2.wav,C:\Users\jayan\OneDrive\Desktop\VERA\evaluation\benchmark_data\audio\SPK_001_spoof_2.wav,SPK_001,TTS-VITS,en,test,spoof,0,-4.541954,-1.0625009,spoof,True,None,3.0,16000,840.98
+3,SPK_001_bonafide_3.wav,C:\Users\jayan\OneDrive\Desktop\VERA\evaluation\benchmark_data\audio\SPK_001_bonafide_3.wav,SPK_001,-,en,test,bonafide,1,1.283366,-1.0625009,bonafide,True,None,3.0,16000,843.25
+4,SPK_001_spoof_4.wav,C:\Users\jayan\OneDrive\Desktop\VERA\evaluation\benchmark_data\audio\SPK_001_spoof_4.wav,SPK_001,VC-DiffVC,en,test,spoof,0,-4.533316,-1.0625009,spoof,True,None,3.0,16000,838.69
+5,SPK_002_bonafide_1.wav,C:\Users\jayan\OneDrive\Desktop\VERA\evaluation\benchmark_data\audio\SPK_002_bonafide_1.wav,SPK_002,-,en,test,bonafide,1,2.053244,-1.0625009,bonafide,True,None,3.0,16000,874.14
+6,SPK_002_spoof_2.wav,C:\Users\jayan\OneDrive\Desktop\VERA\evaluation\benchmark_data\audio\SPK_002_spoof_2.wav,SPK_002,TTS-VITS,en,test,spoof,0,-4.80926,-1.0625009,spoof,True,None,3.0,16000,781.58
+7,SPK_002_bonafide_3.wav,C:\Users\jayan\OneDrive\Desktop\VERA\evaluation\benchmark_data\audio\SPK_002_bonafide_3.wav,SPK_002,-,en,test,bonafide,1,2.053244,-1.0625009,bonafide,True,None,3.0,16000,790.29
+8,SPK_002_spoof_4.wav,C:\Users\jayan\OneDrive\Desktop\VERA\evaluation\benchmark_data\audio\SPK_002_spoof_4.wav,SPK_002,VC-DiffVC,en,test,spoof,0,-4.810011,-1.0625009,spoof,True,None,3.0,16000,836.02
+9,SPK_003_bonafide_1.wav,C:\Users\jayan\OneDrive\Desktop\VERA\evaluation\benchmark_data\audio\SPK_003_bonafide_1.wav,SPK_003,-,en,test,bonafide,1,-0.127507,-1.0625009,bonafide,True,None,3.0,16000,891.88
+10,SPK_003_spoof_2.wav,C:\Users\jayan\OneDrive\Desktop\VERA\evaluation\benchmark_data\audio\SPK_003_spoof_2.wav,SPK_003,TTS-VITS,en,test,spoof,0,-4.817922,-1.0625009,spoof,True,None,3.0,16000,788.13
+11,SPK_003_bonafide_3.wav,C:\Users\jayan\OneDrive\Desktop\VERA\evaluation\benchmark_data\audio\SPK_003_bonafide_3.wav,SPK_003,-,en,test,bonafide,1,-0.127507,-1.0625009,bonafide,True,None,3.0,16000,884.39
+12,SPK_003_spoof_4.wav,C:\Users\jayan\OneDrive\Desktop\VERA\evaluation\benchmark_data\audio\SPK_003_spoof_4.wav,SPK_003,VC-DiffVC,en,test,spoof,0,-4.902568,-1.0625009,spoof,True,None,3.0,16000,803.21

@@ -1,0 +1,36 @@
+{
+  "stream_duration_sec": 12.0,
+  "total_processing_time_sec": 7.127,
+  "total_windows_processed": 9,
+  "first_decision_latency_sec": 0.837,
+  "per_window_latency_ms": {
+    "mean": 791.55,
+    "median": 785.48,
+    "p95": 827.2,
+    "p99": 834.28,
+    "min": 759.38,
+    "max": 836.05
+  },
+  "throughput": {
+    "real_time_factor_rtf": 0.5939,
+    "real_time_speedup": 1.68,
+    "samples_per_sec": 26941.0,
+    "windows_per_sec": 1.26
+  },
+  "memory": {
+    "baseline_ram_mb": 304.0,
+    "model_load_ram_mb": 1385.6,
+    "peak_ram_mb": 1832.1,
+    "delta_ram_mb": 1528.1
+  },
+  "configuration": {
+    "window_size_samples": 64600,
+    "window_duration_sec": 4.0375,
+    "hop_size_samples": 16000,
+    "hop_duration_sec": 1.0,
+    "chunk_size_sec": 0.5,
+    "smoothing_method": "ema",
+    "smoothing_param": 0.35,
+    "dwell_count": 2
+  }
+}

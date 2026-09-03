@@ -1,0 +1,25 @@
+{
+  "direct_5_runs": {
+    "max_logit_difference": 0.0,
+    "max_prob_difference": 0.0,
+    "is_deterministic": true
+  },
+  "rest_5_runs": {
+    "max_logit_difference": 0.0,
+    "max_prob_difference": 0.0,
+    "classifications": [
+      "BONAFIDE"
+    ],
+    "state_divergence": false,
+    "is_deterministic": true
+  },
+  "stream_5_runs": {
+    "max_logit_difference": 0.0,
+    "max_prob_difference": 0.0,
+    "states": [
+      "BONAFIDE"
+    ],
+    "state_divergence": false,
+    "is_deterministic": true
+  }
+}

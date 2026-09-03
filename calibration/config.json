@@ -1,0 +1,78 @@
+{
+  "model_identifier": "lab260/Spectra-AASIST3",
+  "calibration_method": "PlattScaling",
+  "calibration_formula": "P(BonaFide|s) = 1 / (1 + exp(-(w * s + b)))",
+  "parameters": {
+    "slope_w": 1.218015,
+    "intercept_b": -3.388055,
+    "fitted_on_split": "cal_fit",
+    "fit_sample_count": 420,
+    "fit_speakers": [
+      "LA_0069",
+      "LA_0070",
+      "LA_0071",
+      "LA_0072",
+      "LA_0073",
+      "LA_0074"
+    ],
+    "fit_brier_score": 0.0058,
+    "fit_ece": 0.004939,
+    "fit_log_loss": 0.038889
+  },
+  "held_out_validation": {
+    "val_split": "cal_val",
+    "val_sample_count": 280,
+    "val_speakers": [
+      "LA_0075",
+      "LA_0076",
+      "LA_0077",
+      "LA_0078"
+    ],
+    "val_brier_score": 0.000103,
+    "val_ece": 0.006912,
+    "val_log_loss": 0.006964,
+    "val_eer_percent": 0.0,
+    "val_roc_auc": 1.0,
+    "val_accuracy_at_cutoff": 100.0
+  },
+  "score_scale": {
+    "primary_signal": "calibrated_spoof_signal",
+    "min_value": 0.0,
+    "max_value": 100.0,
+    "formula": "calibrated_spoof_signal = (1.0 - P(BonaFide|s)) * 100.0",
+    "direction": "HIGHER = MORE SUSPICIOUS SYNTHETIC/SPOOF SPEECH (0 = Confirmed Genuine, 100 = Confirmed Spoof)",
+    "complementary_signal": "voice_integrity_score = 100.0 - calibrated_spoof_signal",
+    "uncertainty_metric": "decision_confidence = 2.0 * |P(BonaFide|s) - 0.5| in [0.0, 1.0]",
+    "warning": "Calibrated scores represent posterior probability transforms. Never refer to these values as classification accuracy."
+  },
+  "operational_thresholds": {
+    "official_model_raw_threshold": -1.0625009,
+    "calibrated_raw_threshold_at_p50": 2.78162,
+    "calibrated_spoof_threshold": 50.0,
+    "calibrated_voice_integrity_threshold": 50.0
+  },
+  "method_comparison_fit": {
+    "PlattScaling": {
+      "brier_score": 0.0058,
+      "ece": 0.004939,
+      "log_loss": 0.038889
+    },
+    "TemperatureScaling": {
+      "brier_score": 0.006085,
+      "ece": 0.002007,
+      "log_loss": 0.053663
+    },
+    "IsotonicRegression": {
+      "brier_score": 0.004705,
+      "ece": 0.0,
+      "log_loss": 0.026802
+    }
+  },
+  "reproducibility": {
+    "dataset": "ASVspoof 2019 Logical Access Development Partition",
+    "fit_manifest": "data/asvspoof2019/manifests/cal_fit_manifest.csv",
+    "val_manifest": "data/asvspoof2019/manifests/cal_val_manifest.csv",
+    "quarantine_verified": "LA_eval was not accessed or used.",
+    "model_freeze_verified": "lab260/Spectra-AASIST3 weights and inference pipeline were unchanged."
+  }
+}

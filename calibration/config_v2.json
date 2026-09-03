@@ -1,0 +1,51 @@
+{
+  "audit_version": "v2",
+  "dataset_scope": "all_local_samples",
+  "calibration_method": "PlattScaling",
+  "calibration_formula": "P(BonaFide|s) = 1 / (1 + exp(-(w * s + b)))",
+  "parameters": {
+    "slope_w": 0.362272,
+    "intercept_b": -1.136574,
+    "fitted_on_split": "validation",
+    "validation_sample_count": 14,
+    "validation_speakers": [
+      "SPK_001",
+      "SPK_002"
+    ],
+    "validation_brier_score": 0.18184,
+    "validation_ece": 0.031874,
+    "validation_log_loss": 0.514849
+  },
+  "score_scale": {
+    "primary_signal": "calibrated_spoof_signal",
+    "min_value": 0.0,
+    "max_value": 100.0,
+    "formula": "calibrated_spoof_signal = (1.0 - P(BonaFide|s)) * 100.0",
+    "direction": "HIGHER = MORE SUSPICIOUS SYNTHETIC/SPOOF SPEECH (0 = Confirmed Genuine, 100 = Confirmed Spoof)",
+    "complementary_signal": "voice_integrity_score = 100.0 - calibrated_spoof_signal",
+    "uncertainty_metric": "decision_confidence = 2.0 * |P(BonaFide|s) - 0.5| in [0.0, 1.0]",
+    "warning": "Calibrated scores represent posterior probability transforms. Never refer to these values as classification accuracy."
+  },
+  "operational_thresholds": {
+    "official_model_raw_threshold": -1.0625009,
+    "calibrated_raw_threshold_at_p50": 3.137353,
+    "calibrated_spoof_threshold": 50.0
+  },
+  "method_comparison_val": {
+    "PlattScaling": {
+      "brier_score": 0.1818,
+      "ece": 0.0319,
+      "log_loss": 0.5148
+    },
+    "TemperatureScaling": {
+      "brier_score": 0.2209,
+      "ece": 0.2141,
+      "log_loss": 0.6289
+    },
+    "IsotonicRegression": {
+      "brier_score": 0.1429,
+      "ece": 0.0,
+      "log_loss": 0.3961
+    }
+  }
+}

@@ -1,0 +1,13 @@
+file_path,label,speaker_id,attack_type,language,split
+C:\Users\jayan\OneDrive\Desktop\VERA\evaluation\benchmark_data\audio\SPK_001_bonafide_1.wav,bonafide,SPK_001,-,en,test
+C:\Users\jayan\OneDrive\Desktop\VERA\evaluation\benchmark_data\audio\SPK_001_spoof_2.wav,spoof,SPK_001,TTS-VITS,en,test
+C:\Users\jayan\OneDrive\Desktop\VERA\evaluation\benchmark_data\audio\SPK_001_bonafide_3.wav,bonafide,SPK_001,-,en,test
+C:\Users\jayan\OneDrive\Desktop\VERA\evaluation\benchmark_data\audio\SPK_001_spoof_4.wav,spoof,SPK_001,VC-DiffVC,en,test
+C:\Users\jayan\OneDrive\Desktop\VERA\evaluation\benchmark_data\audio\SPK_002_bonafide_1.wav,bonafide,SPK_002,-,en,test
+C:\Users\jayan\OneDrive\Desktop\VERA\evaluation\benchmark_data\audio\SPK_002_spoof_2.wav,spoof,SPK_002,TTS-VITS,en,test
+C:\Users\jayan\OneDrive\Desktop\VERA\evaluation\benchmark_data\audio\SPK_002_bonafide_3.wav,bonafide,SPK_002,-,en,test
+C:\Users\jayan\OneDrive\Desktop\VERA\evaluation\benchmark_data\audio\SPK_002_spoof_4.wav,spoof,SPK_002,VC-DiffVC,en,test
+C:\Users\jayan\OneDrive\Desktop\VERA\evaluation\benchmark_data\audio\SPK_003_bonafide_1.wav,bonafide,SPK_003,-,en,test
+C:\Users\jayan\OneDrive\Desktop\VERA\evaluation\benchmark_data\audio\SPK_003_spoof_2.wav,spoof,SPK_003,TTS-VITS,en,test
+C:\Users\jayan\OneDrive\Desktop\VERA\evaluation\benchmark_data\audio\SPK_003_bonafide_3.wav,bonafide,SPK_003,-,en,test
+C:\Users\jayan\OneDrive\Desktop\VERA\evaluation\benchmark_data\audio\SPK_003_spoof_4.wav,spoof,SPK_003,VC-DiffVC,en,test

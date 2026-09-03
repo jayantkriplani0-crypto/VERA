@@ -1,0 +1,76 @@
+condition_code,condition_name,sample_id,filename,speaker_id,attack_type,ground_truth,ground_truth_binary,raw_score,threshold,predicted_label,is_correct,error_type,latency_ms
+C0_CLEAN,Clean Baseline,1,SPK_001_bonafide_1.wav,SPK_001,-,bonafide,1,1.283366,-1.0625009,bonafide,True,None,1015.34
+C0_CLEAN,Clean Baseline,2,SPK_001_spoof_2.wav,SPK_001,TTS-VITS,spoof,0,-4.541954,-1.0625009,spoof,True,None,884.24
+C0_CLEAN,Clean Baseline,3,SPK_001_bonafide_3.wav,SPK_001,-,bonafide,1,1.283366,-1.0625009,bonafide,True,None,837.97
+C0_CLEAN,Clean Baseline,4,SPK_001_spoof_4.wav,SPK_001,VC-DiffVC,spoof,0,-4.533316,-1.0625009,spoof,True,None,907.88
+C0_CLEAN,Clean Baseline,5,SPK_002_bonafide_1.wav,SPK_002,-,bonafide,1,2.053244,-1.0625009,bonafide,True,None,899.56
+C0_CLEAN,Clean Baseline,6,SPK_002_spoof_2.wav,SPK_002,TTS-VITS,spoof,0,-4.80926,-1.0625009,spoof,True,None,848.57
+C0_CLEAN,Clean Baseline,7,SPK_002_bonafide_3.wav,SPK_002,-,bonafide,1,2.053244,-1.0625009,bonafide,True,None,860.73
+C0_CLEAN,Clean Baseline,8,SPK_002_spoof_4.wav,SPK_002,VC-DiffVC,spoof,0,-4.810011,-1.0625009,spoof,True,None,834.07
+C0_CLEAN,Clean Baseline,9,SPK_003_bonafide_1.wav,SPK_003,-,bonafide,1,-0.127507,-1.0625009,bonafide,True,None,809.56
+C0_CLEAN,Clean Baseline,10,SPK_003_spoof_2.wav,SPK_003,TTS-VITS,spoof,0,-4.817922,-1.0625009,spoof,True,None,912.13
+C0_CLEAN,Clean Baseline,11,SPK_003_bonafide_3.wav,SPK_003,-,bonafide,1,-0.127507,-1.0625009,bonafide,True,None,845.53
+C0_CLEAN,Clean Baseline,12,SPK_003_spoof_4.wav,SPK_003,VC-DiffVC,spoof,0,-4.902568,-1.0625009,spoof,True,None,836.81
+C1_NOISE_15DB,Background Noise (15dB SNR),1,SPK_001_bonafide_1.wav,SPK_001,-,bonafide,1,0.641602,-1.0625009,bonafide,True,None,827.51
+C1_NOISE_15DB,Background Noise (15dB SNR),2,SPK_001_spoof_2.wav,SPK_001,TTS-VITS,spoof,0,-4.195964,-1.0625009,spoof,True,None,845.88
+C1_NOISE_15DB,Background Noise (15dB SNR),3,SPK_001_bonafide_3.wav,SPK_001,-,bonafide,1,0.641602,-1.0625009,bonafide,True,None,820.95
+C1_NOISE_15DB,Background Noise (15dB SNR),4,SPK_001_spoof_4.wav,SPK_001,VC-DiffVC,spoof,0,-4.083323,-1.0625009,spoof,True,None,850.0
+C1_NOISE_15DB,Background Noise (15dB SNR),5,SPK_002_bonafide_1.wav,SPK_002,-,bonafide,1,-1.185137,-1.0625009,spoof,False,False Negative (FRR),863.44
+C1_NOISE_15DB,Background Noise (15dB SNR),6,SPK_002_spoof_2.wav,SPK_002,TTS-VITS,spoof,0,-4.547156,-1.0625009,spoof,True,None,934.86
+C1_NOISE_15DB,Background Noise (15dB SNR),7,SPK_002_bonafide_3.wav,SPK_002,-,bonafide,1,-1.185137,-1.0625009,spoof,False,False Negative (FRR),869.87
+C1_NOISE_15DB,Background Noise (15dB SNR),8,SPK_002_spoof_4.wav,SPK_002,VC-DiffVC,spoof,0,-4.304096,-1.0625009,spoof,True,None,822.8
+C1_NOISE_15DB,Background Noise (15dB SNR),9,SPK_003_bonafide_1.wav,SPK_003,-,bonafide,1,-3.472362,-1.0625009,spoof,False,False Negative (FRR),869.95
+C1_NOISE_15DB,Background Noise (15dB SNR),10,SPK_003_spoof_2.wav,SPK_003,TTS-VITS,spoof,0,-4.74275,-1.0625009,spoof,True,None,854.15
+C1_NOISE_15DB,Background Noise (15dB SNR),11,SPK_003_bonafide_3.wav,SPK_003,-,bonafide,1,-3.472362,-1.0625009,spoof,False,False Negative (FRR),885.41
+C1_NOISE_15DB,Background Noise (15dB SNR),12,SPK_003_spoof_4.wav,SPK_003,VC-DiffVC,spoof,0,-4.829556,-1.0625009,spoof,True,None,849.93
+C2_TELEPHONY,Telephone / VoIP Compression,1,SPK_001_bonafide_1.wav,SPK_001,-,bonafide,1,-0.112529,-1.0625009,bonafide,True,None,834.66
+C2_TELEPHONY,Telephone / VoIP Compression,2,SPK_001_spoof_2.wav,SPK_001,TTS-VITS,spoof,0,-4.630856,-1.0625009,spoof,True,None,809.76
+C2_TELEPHONY,Telephone / VoIP Compression,3,SPK_001_bonafide_3.wav,SPK_001,-,bonafide,1,-0.112529,-1.0625009,bonafide,True,None,806.98
+C2_TELEPHONY,Telephone / VoIP Compression,4,SPK_001_spoof_4.wav,SPK_001,VC-DiffVC,spoof,0,-4.422553,-1.0625009,spoof,True,None,853.39
+C2_TELEPHONY,Telephone / VoIP Compression,5,SPK_002_bonafide_1.wav,SPK_002,-,bonafide,1,4.255388,-1.0625009,bonafide,True,None,793.99
+C2_TELEPHONY,Telephone / VoIP Compression,6,SPK_002_spoof_2.wav,SPK_002,TTS-VITS,spoof,0,-4.670031,-1.0625009,spoof,True,None,892.79
+C2_TELEPHONY,Telephone / VoIP Compression,7,SPK_002_bonafide_3.wav,SPK_002,-,bonafide,1,4.255388,-1.0625009,bonafide,True,None,757.73
+C2_TELEPHONY,Telephone / VoIP Compression,8,SPK_002_spoof_4.wav,SPK_002,VC-DiffVC,spoof,0,-4.448744,-1.0625009,spoof,True,None,796.52
+C2_TELEPHONY,Telephone / VoIP Compression,9,SPK_003_bonafide_1.wav,SPK_003,-,bonafide,1,-1.154582,-1.0625009,spoof,False,False Negative (FRR),807.67
+C2_TELEPHONY,Telephone / VoIP Compression,10,SPK_003_spoof_2.wav,SPK_003,TTS-VITS,spoof,0,-4.198069,-1.0625009,spoof,True,None,740.57
+C2_TELEPHONY,Telephone / VoIP Compression,11,SPK_003_bonafide_3.wav,SPK_003,-,bonafide,1,-1.154582,-1.0625009,spoof,False,False Negative (FRR),789.39
+C2_TELEPHONY,Telephone / VoIP Compression,12,SPK_003_spoof_4.wav,SPK_003,VC-DiffVC,spoof,0,-4.164191,-1.0625009,spoof,True,None,740.58
+C3_REPLAY,Replay / Re-recording,1,SPK_001_bonafide_1.wav,SPK_001,-,bonafide,1,-0.53493,-1.0625009,bonafide,True,None,764.82
+C3_REPLAY,Replay / Re-recording,2,SPK_001_spoof_2.wav,SPK_001,TTS-VITS,spoof,0,-4.911124,-1.0625009,spoof,True,None,757.92
+C3_REPLAY,Replay / Re-recording,3,SPK_001_bonafide_3.wav,SPK_001,-,bonafide,1,-0.53493,-1.0625009,bonafide,True,None,748.93
+C3_REPLAY,Replay / Re-recording,4,SPK_001_spoof_4.wav,SPK_001,VC-DiffVC,spoof,0,-4.794787,-1.0625009,spoof,True,None,756.75
+C3_REPLAY,Replay / Re-recording,5,SPK_002_bonafide_1.wav,SPK_002,-,bonafide,1,0.845775,-1.0625009,bonafide,True,None,745.38
+C3_REPLAY,Replay / Re-recording,6,SPK_002_spoof_2.wav,SPK_002,TTS-VITS,spoof,0,-4.767657,-1.0625009,spoof,True,None,765.46
+C3_REPLAY,Replay / Re-recording,7,SPK_002_bonafide_3.wav,SPK_002,-,bonafide,1,0.845775,-1.0625009,bonafide,True,None,759.28
+C3_REPLAY,Replay / Re-recording,8,SPK_002_spoof_4.wav,SPK_002,VC-DiffVC,spoof,0,-4.923594,-1.0625009,spoof,True,None,777.41
+C3_REPLAY,Replay / Re-recording,9,SPK_003_bonafide_1.wav,SPK_003,-,bonafide,1,-0.661897,-1.0625009,bonafide,True,None,757.33
+C3_REPLAY,Replay / Re-recording,10,SPK_003_spoof_2.wav,SPK_003,TTS-VITS,spoof,0,-4.504425,-1.0625009,spoof,True,None,765.19
+C3_REPLAY,Replay / Re-recording,11,SPK_003_bonafide_3.wav,SPK_003,-,bonafide,1,-0.661897,-1.0625009,bonafide,True,None,757.83
+C3_REPLAY,Replay / Re-recording,12,SPK_003_spoof_4.wav,SPK_003,VC-DiffVC,spoof,0,-4.543447,-1.0625009,spoof,True,None,813.02
+C4_LEVEL_VAR,Audio Level Variation (-14dB),1,SPK_001_bonafide_1.wav,SPK_001,-,bonafide,1,-0.368143,-1.0625009,bonafide,True,None,761.6
+C4_LEVEL_VAR,Audio Level Variation (-14dB),2,SPK_001_spoof_2.wav,SPK_001,TTS-VITS,spoof,0,-4.035003,-1.0625009,spoof,True,None,762.13
+C4_LEVEL_VAR,Audio Level Variation (-14dB),3,SPK_001_bonafide_3.wav,SPK_001,-,bonafide,1,-0.368143,-1.0625009,bonafide,True,None,760.71
+C4_LEVEL_VAR,Audio Level Variation (-14dB),4,SPK_001_spoof_4.wav,SPK_001,VC-DiffVC,spoof,0,-4.019371,-1.0625009,spoof,True,None,761.04
+C4_LEVEL_VAR,Audio Level Variation (-14dB),5,SPK_002_bonafide_1.wav,SPK_002,-,bonafide,1,-0.745999,-1.0625009,bonafide,True,None,766.19
+C4_LEVEL_VAR,Audio Level Variation (-14dB),6,SPK_002_spoof_2.wav,SPK_002,TTS-VITS,spoof,0,-4.13383,-1.0625009,spoof,True,None,746.69
+C4_LEVEL_VAR,Audio Level Variation (-14dB),7,SPK_002_bonafide_3.wav,SPK_002,-,bonafide,1,-0.745999,-1.0625009,bonafide,True,None,934.98
+C4_LEVEL_VAR,Audio Level Variation (-14dB),8,SPK_002_spoof_4.wav,SPK_002,VC-DiffVC,spoof,0,-4.165262,-1.0625009,spoof,True,None,797.85
+C4_LEVEL_VAR,Audio Level Variation (-14dB),9,SPK_003_bonafide_1.wav,SPK_003,-,bonafide,1,-1.525712,-1.0625009,spoof,False,False Negative (FRR),813.09
+C4_LEVEL_VAR,Audio Level Variation (-14dB),10,SPK_003_spoof_2.wav,SPK_003,TTS-VITS,spoof,0,-4.233637,-1.0625009,spoof,True,None,937.46
+C4_LEVEL_VAR,Audio Level Variation (-14dB),11,SPK_003_bonafide_3.wav,SPK_003,-,bonafide,1,-1.525712,-1.0625009,spoof,False,False Negative (FRR),893.57
+C4_LEVEL_VAR,Audio Level Variation (-14dB),12,SPK_003_spoof_4.wav,SPK_003,VC-DiffVC,spoof,0,-4.394121,-1.0625009,spoof,True,None,835.14
+C5_UNSEEN_SPOOF,Unseen Spoof / Deepfake Sources,1,SPK_001_bonafide_1.wav,SPK_001,-,bonafide,1,1.283366,-1.0625009,bonafide,True,None,942.2
+C5_UNSEEN_SPOOF,Unseen Spoof / Deepfake Sources,2,SPK_001_bonafide_3.wav,SPK_001,-,bonafide,1,1.283366,-1.0625009,bonafide,True,None,979.08
+C5_UNSEEN_SPOOF,Unseen Spoof / Deepfake Sources,3,SPK_002_bonafide_1.wav,SPK_002,-,bonafide,1,2.053244,-1.0625009,bonafide,True,None,919.28
+C5_UNSEEN_SPOOF,Unseen Spoof / Deepfake Sources,4,SPK_002_bonafide_3.wav,SPK_002,-,bonafide,1,2.053244,-1.0625009,bonafide,True,None,894.65
+C5_UNSEEN_SPOOF,Unseen Spoof / Deepfake Sources,5,SPK_003_bonafide_1.wav,SPK_003,-,bonafide,1,-0.127507,-1.0625009,bonafide,True,None,945.64
+C5_UNSEEN_SPOOF,Unseen Spoof / Deepfake Sources,6,SPK_003_bonafide_3.wav,SPK_003,-,bonafide,1,-0.127507,-1.0625009,bonafide,True,None,958.22
+C5_UNSEEN_SPOOF,Unseen Spoof / Deepfake Sources,7,SPK_001_unseen_spoof_1_TTS-ChatTTS-Style.wav,SPK_001,TTS-ChatTTS-Style,spoof,0,1.701284,-1.0625009,bonafide,False,False Positive (FAR),925.08
+C5_UNSEEN_SPOOF,Unseen Spoof / Deepfake Sources,8,SPK_001_unseen_spoof_2_VC-FreeVC-Style.wav,SPK_001,VC-FreeVC-Style,spoof,0,0.599148,-1.0625009,bonafide,False,False Positive (FAR),944.52
+C5_UNSEEN_SPOOF,Unseen Spoof / Deepfake Sources,9,SPK_001_unseen_spoof_3_Neural-Vocoder-HiFiGAN.wav,SPK_001,Neural-Vocoder-HiFiGAN,spoof,0,4.087599,-1.0625009,bonafide,False,False Positive (FAR),1075.36
+C5_UNSEEN_SPOOF,Unseen Spoof / Deepfake Sources,10,SPK_002_unseen_spoof_1_TTS-ChatTTS-Style.wav,SPK_002,TTS-ChatTTS-Style,spoof,0,2.309833,-1.0625009,bonafide,False,False Positive (FAR),947.97
+C5_UNSEEN_SPOOF,Unseen Spoof / Deepfake Sources,11,SPK_002_unseen_spoof_2_VC-FreeVC-Style.wav,SPK_002,VC-FreeVC-Style,spoof,0,0.313088,-1.0625009,bonafide,False,False Positive (FAR),849.43
+C5_UNSEEN_SPOOF,Unseen Spoof / Deepfake Sources,12,SPK_002_unseen_spoof_3_Neural-Vocoder-HiFiGAN.wav,SPK_002,Neural-Vocoder-HiFiGAN,spoof,0,1.566978,-1.0625009,bonafide,False,False Positive (FAR),847.23
+C5_UNSEEN_SPOOF,Unseen Spoof / Deepfake Sources,13,SPK_003_unseen_spoof_1_TTS-ChatTTS-Style.wav,SPK_003,TTS-ChatTTS-Style,spoof,0,1.947302,-1.0625009,bonafide,False,False Positive (FAR),757.72
+C5_UNSEEN_SPOOF,Unseen Spoof / Deepfake Sources,14,SPK_003_unseen_spoof_2_VC-FreeVC-Style.wav,SPK_003,VC-FreeVC-Style,spoof,0,-0.444568,-1.0625009,bonafide,False,False Positive (FAR),756.33
+C5_UNSEEN_SPOOF,Unseen Spoof / Deepfake Sources,15,SPK_003_unseen_spoof_3_Neural-Vocoder-HiFiGAN.wav,SPK_003,Neural-Vocoder-HiFiGAN,spoof,0,0.32824,-1.0625009,bonafide,False,False Positive (FAR),790.5

@@ -1,0 +1,78 @@
+{
+  "silence": {
+    "status": "PASS",
+    "raw_score": 1.6322,
+    "spoof_signal": 80.22,
+    "confidence": 0.6044
+  },
+  "near_silence": {
+    "status": "PASS",
+    "raw_score": 1.5906,
+    "spoof_signal": 81.01,
+    "confidence": 0.6202
+  },
+  "clipping": {
+    "status": "PASS",
+    "raw_score": 1.9695,
+    "spoof_signal": 72.89,
+    "confidence": 0.4579
+  },
+  "very_short_800_samples": {
+    "status": "PASS",
+    "raw_score": 1.9042,
+    "spoof_signal": 74.43,
+    "confidence": 0.4887
+  },
+  "exactly_64600_samples": {
+    "status": "PASS",
+    "raw_score": 2.2048,
+    "spoof_signal": 66.88,
+    "confidence": 0.3375
+  },
+  "just_below_64599_samples": {
+    "status": "PASS",
+    "raw_score": 2.2048,
+    "spoof_signal": 66.88,
+    "confidence": 0.3375
+  },
+  "just_above_64601_samples": {
+    "status": "PASS",
+    "raw_score": 2.2048,
+    "spoof_signal": 66.88,
+    "confidence": 0.3375
+  },
+  "long_audio_160000_samples": {
+    "status": "PASS",
+    "raw_score": 2.2226,
+    "spoof_signal": 66.4,
+    "confidence": 0.3279
+  },
+  "irregular_chunks": {
+    "status": "PASS",
+    "total_chunks_pushed": 7,
+    "windows_emitted": 2,
+    "total_samples": 85840
+  },
+  "format_wav": {
+    "status": "PASS",
+    "http_status": 200
+  },
+  "format_flac": {
+    "status": "PASS",
+    "http_status": 200
+  },
+  "format_ogg": {
+    "status": "PASS",
+    "http_status": 200
+  },
+  "zero_byte_input": {
+    "status": "PASS",
+    "http_status": 400,
+    "detail": "Provided audio file is empty (0 bytes)."
+  },
+  "corrupted_input": {
+    "status": "PASS",
+    "http_status": 400,
+    "detail": "Could not decode audio data: Error opening <_io.BytesIO object at 0x00000267A910CF40>: Format not recognised."
+  }
+}
