@@ -74,6 +74,7 @@ const Dashboard: React.FC = () => {
   const [batchDecision, setBatchDecision] = useState<BatchDecisionResult | null>(null);
   const [decisionError, setDecisionError] = useState<string | null>(null);
   const [evidenceData, setEvidenceData] = useState<EvidenceResponse['data'] | null>(null);
+  const [uploadedFile, setUploadedFile] = useState<File | null>(null);
 
   const {
     isRecording,
@@ -109,6 +110,7 @@ const Dashboard: React.FC = () => {
     setBatchDecision(null);
     setDecisionError(null);
     setEvidenceData(null);
+    setUploadedFile(null);
     setAnalysisStage('idle');
     clearRecording();
     if (connectionState !== 'Disconnected') stopLiveDetection();
@@ -124,7 +126,8 @@ const Dashboard: React.FC = () => {
 
   // ── Batch Analysis — sequential, with partial result display ─────────────
   const handleRunAnalysis = async () => {
-    if (!activeSession || !audioBlob) return;
+    const fileToAnalyze = uploadedFile || audioBlob;
+    if (!activeSession || !fileToAnalyze) return;
 
     // Reset prior results
     setBatchRisk(null);
@@ -140,7 +143,7 @@ const Dashboard: React.FC = () => {
       setAnalysisStage('voice');
       let riskRes;
       try {
-        riskRes = await api.analyzeRisk(activeSession.session_id, audioBlob);
+        riskRes = await api.analyzeRisk(activeSession.session_id, fileToAnalyze);
       } catch (riskErr) {
         setError(riskErr instanceof Error ? riskErr.message : 'Risk analysis failed.');
         setAnalysisStage('error');
@@ -177,7 +180,7 @@ const Dashboard: React.FC = () => {
 
       // ── Step 2: Decision (uses same audio) ──────────────────────────────
       try {
-        const decisionRes = await api.getDecision(activeSession.session_id, audioBlob);
+        const decisionRes = await api.getDecision(activeSession.session_id, fileToAnalyze);
         setBatchDecision(decisionRes.data.policy);
       } catch (decErr) {
         // Risk succeeded — preserve it. Show decision-specific error.
@@ -188,7 +191,7 @@ const Dashboard: React.FC = () => {
 
       // ── Step 3: Evidence (best-effort, silent failure OK) ───────────────
       try {
-        const evidenceRes = await api.generateEvidence(activeSession.session_id, audioBlob);
+        const evidenceRes = await api.generateEvidence(activeSession.session_id, fileToAnalyze);
         if (evidenceRes?.data) setEvidenceData(evidenceRes.data);
       } catch {
         // Evidence failure is non-fatal — batch flow still succeeds
@@ -231,6 +234,7 @@ const Dashboard: React.FC = () => {
     setBatchDecision(null);
     setDecisionError(null);
     setEvidenceData(null);
+    setUploadedFile(null);
     setError(null);
     setAnalysisStage('idle');
     clearRecording();
@@ -395,13 +399,28 @@ const Dashboard: React.FC = () => {
               {/* BATCH CONTROLS */}
               {detectionMode === 'batch' && (
                 <div className="flex items-center space-x-2">
-                  {!audioBlob && !isRecording && !isProcessing && (
-                    <button
-                      onClick={startRecording}
-                      className="px-4 py-2 bg-vera-danger/20 hover:bg-vera-danger/30 text-vera-danger border border-vera-danger/50 rounded-lg font-medium flex items-center transition-colors"
-                    >
-                      <Mic className="mr-2" size={16} /> Record
-                    </button>
+                  {!audioBlob && !uploadedFile && !isRecording && !isProcessing && (
+                    <>
+                      <button
+                        onClick={startRecording}
+                        className="px-4 py-2 bg-vera-danger/20 hover:bg-vera-danger/30 text-vera-danger border border-vera-danger/50 rounded-lg font-medium flex items-center transition-colors"
+                      >
+                        <Mic className="mr-2" size={16} /> Record
+                      </button>
+                      <label className="px-4 py-2 bg-vera-dark hover:bg-vera-border text-vera-text border border-vera-border rounded-lg font-medium flex items-center transition-colors cursor-pointer">
+                        <FileAudio className="mr-2" size={16} /> Upload Audio
+                        <input 
+                          type="file" 
+                          accept="audio/wav,audio/mp3,audio/ogg" 
+                          className="hidden" 
+                          onChange={(e) => {
+                            if (e.target.files && e.target.files[0]) {
+                              setUploadedFile(e.target.files[0]);
+                            }
+                          }}
+                        />
+                      </label>
+                    </>
                   )}
                   {isRecording && (
                     <div className="flex items-center space-x-2">
@@ -417,8 +436,9 @@ const Dashboard: React.FC = () => {
                       </button>
                     </div>
                   )}
-                  {audioBlob && !isProcessing && (
+                  {(audioBlob || uploadedFile) && !isProcessing && (
                     <>
+                      {uploadedFile && <span className="text-sm text-vera-textMuted mr-2 truncate max-w-[150px]">{uploadedFile.name}</span>}
                       <button
                         onClick={handleRunAnalysis}
                         className="px-4 py-2 bg-vera-accent hover:bg-blue-600 text-white rounded-lg font-medium transition-colors"
@@ -426,7 +446,7 @@ const Dashboard: React.FC = () => {
                         {batchRisk ? 'Re-analyze' : 'Run Analysis'}
                       </button>
                       <button
-                        onClick={() => { clearRecording(); setBatchRisk(null); setBatchDecision(null); setDecisionError(null); setEvidenceData(null); setAnalysisStage('idle'); }}
+                        onClick={() => { clearRecording(); setUploadedFile(null); setBatchRisk(null); setBatchDecision(null); setDecisionError(null); setEvidenceData(null); setAnalysisStage('idle'); }}
                         className="px-4 py-2 bg-vera-border hover:bg-gray-700 text-gray-300 rounded-lg transition-colors"
                       >
                         Clear

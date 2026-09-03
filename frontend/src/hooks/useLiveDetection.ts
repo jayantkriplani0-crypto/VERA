@@ -25,7 +25,9 @@ export interface UseLiveDetectionResult {
   getLiveSessionBlob: () => Blob | null;
 }
 
-const WS_BASE_URL = (import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:8000').replace(/^http/, 'ws');
+const WS_BASE_URL = import.meta.env.VITE_API_BASE_URL
+  ? (import.meta.env.VITE_API_BASE_URL as string).replace(/^http/, 'ws')
+  : `ws://${window.location.host}`;
 
 function floatTo16BitPCM(input: Float32Array): Int16Array {
   const output = new Int16Array(input.length);
