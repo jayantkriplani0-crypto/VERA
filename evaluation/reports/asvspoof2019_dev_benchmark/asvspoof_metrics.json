@@ -1,0 +1,117 @@
+{
+  "benchmark_summary": {
+    "total_samples": 160,
+    "num_bonafide": 100,
+    "num_spoof": 60,
+    "num_speakers": 1,
+    "decision_threshold": -1.0625009,
+    "true_positives": 100,
+    "false_positives": 40,
+    "true_negatives": 20,
+    "false_negatives": 0,
+    "accuracy": 0.75,
+    "precision": 0.7142857142857143,
+    "recall": 1.0,
+    "f1_score": 0.8333333333333334,
+    "false_positive_rate": 0.6666666666666666,
+    "false_negative_rate": 0.0,
+    "roc_auc": 1.0,
+    "eer_percent": 0.0,
+    "eer_threshold": 13.073248863220215,
+    "total_inference_time_sec": 128.67654380000022,
+    "avg_latency_ms": 804.2283987500014,
+    "throughput_samples_per_sec": 1.2434278639678518
+  },
+  "attack_breakdown": {
+    "-": {
+      "category": "bonafide",
+      "sample_count": 100,
+      "correct_count": 100,
+      "error_count": 0,
+      "accuracy_pct": 100.0,
+      "error_type": "False Rejection (FRR)",
+      "mean_raw_score": 13.5827,
+      "min_raw_score": 13.0732,
+      "max_raw_score": 13.7845
+    },
+    "A01": {
+      "category": "spoof",
+      "sample_count": 10,
+      "detected_count": 4,
+      "missed_count": 6,
+      "detection_rate_pct": 40.0,
+      "miss_rate_pct": 60.0,
+      "error_type": "False Alarm (FAR)",
+      "mean_raw_score": -1.0794,
+      "min_raw_score": -1.3952,
+      "max_raw_score": -0.9164
+    },
+    "A02": {
+      "category": "spoof",
+      "sample_count": 10,
+      "detected_count": 0,
+      "missed_count": 10,
+      "detection_rate_pct": 0.0,
+      "miss_rate_pct": 100.0,
+      "error_type": "False Alarm (FAR)",
+      "mean_raw_score": -0.3817,
+      "min_raw_score": -0.6134,
+      "max_raw_score": -0.2571
+    },
+    "A03": {
+      "category": "spoof",
+      "sample_count": 10,
+      "detected_count": 1,
+      "missed_count": 9,
+      "detection_rate_pct": 10.0,
+      "miss_rate_pct": 90.0,
+      "error_type": "False Alarm (FAR)",
+      "mean_raw_score": -0.7859,
+      "min_raw_score": -1.1292,
+      "max_raw_score": -0.5093
+    },
+    "A04": {
+      "category": "spoof",
+      "sample_count": 10,
+      "detected_count": 1,
+      "missed_count": 9,
+      "detection_rate_pct": 10.0,
+      "miss_rate_pct": 90.0,
+      "error_type": "False Alarm (FAR)",
+      "mean_raw_score": -0.8324,
+      "min_raw_score": -2.3539,
+      "max_raw_score": -0.3887
+    },
+    "A05": {
+      "category": "spoof",
+      "sample_count": 10,
+      "detected_count": 5,
+      "missed_count": 5,
+      "detection_rate_pct": 50.0,
+      "miss_rate_pct": 50.0,
+      "error_type": "False Alarm (FAR)",
+      "mean_raw_score": -1.0719,
+      "min_raw_score": -1.6905,
+      "max_raw_score": -0.5355
+    },
+    "A06": {
+      "category": "spoof",
+      "sample_count": 10,
+      "detected_count": 9,
+      "missed_count": 1,
+      "detection_rate_pct": 90.0,
+      "miss_rate_pct": 10.0,
+      "error_type": "False Alarm (FAR)",
+      "mean_raw_score": -1.5677,
+      "min_raw_score": -2.3036,
+      "max_raw_score": -0.6596
+    }
+  },
+  "execution_metadata": {
+    "protocol_file": "C:\\Users\\jayan\\OneDrive\\Desktop\\VERA\\data\\asvspoof2019\\protocols\\ASVspoof2019.LA.cm.dev.trl.txt",
+    "audio_dir": "C:\\Users\\jayan\\OneDrive\\Desktop\\VERA\\data\\asvspoof2019\\dev\\flac",
+    "model": "lab260/Spectra-AASIST3",
+    "samples_evaluated": 160,
+    "total_elapsed_sec": 128.68
+  }
+}

@@ -1,0 +1,169 @@
+[
+  {
+    "scenario": "Scenario A: Genuine Enrolled Speech",
+    "file": "C:\\Users\\jayan\\OneDrive\\Desktop\\VERA\\test_data\\ceo_live_genuine.wav",
+    "voice_authenticity": {
+      "raw_score": -0.8525199294090271,
+      "p_bonafide": 0.0118,
+      "p_spoof": 0.9882,
+      "spoof_signal": 98.82,
+      "classification": "SPOOF / DEEPFAKE (Synthetic / Cloned Speech)",
+      "confidence": 0.9764
+    },
+    "speaker_verification": {
+      "reference_speaker": "CEO_Rahul",
+      "similarity_score": 0.824,
+      "match": true,
+      "confidence": 0.67
+    },
+    "asr": {
+      "transcript": "Hi Team, please review the quarterly budget spreadsheet before the 4pm meeting."
+    },
+    "conversation_intelligence": {
+      "intent": "normal_conversation",
+      "signals": [],
+      "emotion": "neutral"
+    },
+    "risk_fusion": {
+      "overall_risk_score": 0.1,
+      "risk_level": "low",
+      "contributing_signals": [
+        "high_voice_manipulation_probability"
+      ]
+    },
+    "policy": {
+      "decision": "allow",
+      "escalated": false
+    },
+    "frontend_telemetry": {
+      "session_id": "cd5cf059-ae60-4331-8c8b-4c08a08fccb5",
+      "transcript": "Hi Team, please review the quarterly budget spreadsheet before the 4pm meeting.",
+      "voice_integrity_score": 0.9882,
+      "speaker_similarity_score": 0.824,
+      "overall_risk_score": 0.1,
+      "risk_level": "low",
+      "decision": "allow",
+      "signals": [
+        "high_voice_manipulation_probability"
+      ],
+      "timestamp": "2026-09-03T15:13:06Z"
+    },
+    "total_latency_seconds": 3.054
+  },
+  {
+    "scenario": "Scenario B: Synthetic / Anti-Spoof Test Audio",
+    "file": "C:\\Users\\jayan\\OneDrive\\Desktop\\VERA\\evaluation\\benchmark_data\\audio\\SPK_001_spoof_2.wav",
+    "voice_authenticity": {
+      "raw_score": -4.541954040527344,
+      "p_bonafide": 0.0001,
+      "p_spoof": 0.9999,
+      "spoof_signal": 99.99,
+      "classification": "SPOOF / DEEPFAKE (Synthetic / Cloned Speech)",
+      "confidence": 0.9997
+    },
+    "speaker_verification": {
+      "reference_speaker": null,
+      "similarity_score": 1.0,
+      "match": true,
+      "confidence": 0.0
+    },
+    "asr": {
+      "transcript": ""
+    },
+    "conversation_intelligence": {
+      "intent": "normal_conversation",
+      "signals": [],
+      "emotion": "neutral"
+    },
+    "risk_fusion": {
+      "overall_risk_score": 0.1,
+      "risk_level": "low",
+      "contributing_signals": [
+        "high_voice_manipulation_probability"
+      ]
+    },
+    "policy": {
+      "decision": "allow",
+      "escalated": false
+    },
+    "frontend_telemetry": {
+      "session_id": "815c1bf9-94eb-4550-8c69-e21801db5ac6",
+      "transcript": "",
+      "voice_integrity_score": 0.9999,
+      "speaker_similarity_score": null,
+      "overall_risk_score": 0.1,
+      "risk_level": "low",
+      "decision": "allow",
+      "signals": [
+        "high_voice_manipulation_probability"
+      ],
+      "timestamp": "2026-09-03T15:13:08Z"
+    },
+    "total_latency_seconds": 2.086
+  },
+  {
+    "scenario": "Scenario C: Risky Imposter Scam Call (Cyber Crime Impersonation)",
+    "file": "C:\\Users\\jayan\\OneDrive\\Desktop\\VERA\\test_data\\scam_call_imposter.wav",
+    "voice_authenticity": {
+      "raw_score": -0.6458324790000916,
+      "p_bonafide": 0.0151,
+      "p_spoof": 0.9849,
+      "spoof_signal": 98.49,
+      "classification": "SPOOF / DEEPFAKE (Synthetic / Cloned Speech)",
+      "confidence": 0.9697
+    },
+    "speaker_verification": {
+      "reference_speaker": "CEO_Rahul",
+      "similarity_score": 0.2,
+      "match": false,
+      "confidence": 0.95
+    },
+    "asr": {
+      "transcript": "Attention Sir, this is Senior Officer Shama from Cyber Crime Branch. Your account is linked to money laundering. Share your OTP immediately or police will be dispatched. Do not inform anyone."
+    },
+    "conversation_intelligence": {
+      "intent": "credential_request",
+      "signals": [
+        "urgency",
+        "authority_pressure",
+        "credential_request"
+      ],
+      "emotion": "urgency"
+    },
+    "risk_fusion": {
+      "overall_risk_score": 0.89396,
+      "risk_level": "critical",
+      "contributing_signals": [
+        "credential_request",
+        "authority_pressure",
+        "high_voice_manipulation_probability",
+        "speaker_mismatch",
+        "auth_credential_request",
+        "urgency"
+      ]
+    },
+    "policy": {
+      "decision": "block",
+      "escalated": false
+    },
+    "frontend_telemetry": {
+      "session_id": "d2d5555f-e467-4016-9e41-37f26495a8bb",
+      "transcript": "Attention Sir, this is Senior Officer Shama from Cyber Crime Branch. Your account is linked to money laundering. Share your OTP immediately or police will be dispatched. Do not inform anyone.",
+      "voice_integrity_score": 0.9849,
+      "speaker_similarity_score": 0.2,
+      "overall_risk_score": 0.89396,
+      "risk_level": "critical",
+      "decision": "block",
+      "signals": [
+        "credential_request",
+        "authority_pressure",
+        "high_voice_manipulation_probability",
+        "speaker_mismatch",
+        "auth_credential_request",
+        "urgency"
+      ],
+      "timestamp": "2026-09-03T15:13:11Z"
+    },
+    "total_latency_seconds": 3.371
+  }
+]

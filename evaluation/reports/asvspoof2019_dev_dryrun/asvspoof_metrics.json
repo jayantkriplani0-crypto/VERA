@@ -1,0 +1,45 @@
+{
+  "benchmark_summary": {
+    "total_samples": 100,
+    "num_bonafide": 100,
+    "num_spoof": 0,
+    "num_speakers": 1,
+    "decision_threshold": -1.0625009,
+    "true_positives": 100,
+    "false_positives": 0,
+    "true_negatives": 0,
+    "false_negatives": 0,
+    "accuracy": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1_score": 1.0,
+    "false_positive_rate": 0.0,
+    "false_negative_rate": 0.0,
+    "roc_auc": 1.0,
+    "eer_percent": 0.0,
+    "eer_threshold": -1.0625009,
+    "total_inference_time_sec": 80.36964140000055,
+    "avg_latency_ms": 803.6964140000055,
+    "throughput_samples_per_sec": 1.2442509168642293
+  },
+  "attack_breakdown": {
+    "-": {
+      "category": "bonafide",
+      "sample_count": 100,
+      "correct_count": 100,
+      "error_count": 0,
+      "accuracy_pct": 100.0,
+      "error_type": "False Rejection (FRR)",
+      "mean_raw_score": 13.5827,
+      "min_raw_score": 13.0732,
+      "max_raw_score": 13.7845
+    }
+  },
+  "execution_metadata": {
+    "protocol_file": "C:\\Users\\jayan\\OneDrive\\Desktop\\VERA\\data\\asvspoof2019\\protocols\\ASVspoof2019.LA.cm.dev.trl.txt",
+    "audio_dir": "C:\\Users\\jayan\\OneDrive\\Desktop\\VERA\\data\\asvspoof2019\\dev\\flac",
+    "model": "lab260/Spectra-AASIST3",
+    "samples_evaluated": 100,
+    "total_elapsed_sec": 80.37
+  }
+}
