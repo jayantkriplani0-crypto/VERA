@@ -3,6 +3,23 @@ __pycache__/
 *.py[codz]
 *$py.class
 
+# Caches and virtual environments
+.cache/
+.env
+venv/
+env/
+
+# Model weights and cached embeddings (downloaded on demand via Hugging Face)
+pretrained_models/
+data/pretrained_models/
+*.pt
+*.bin
+*.onnx
+*.ckpt
+
+# Cached embeddings
+data/enrolled_speakers/*.npy
+
 # C extensions
 *.so
 
