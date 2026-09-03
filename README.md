@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # VERA - Person 2: Speaker Consistency & Conversation Intelligence Pipeline
 
 This repository contains the complete implementation for **Person 2** in the **VERA (Voice Scam & Social Engineering Detection)** architecture.
@@ -115,3 +116,6 @@ python main.py --process test_data/scam_call_imposter.wav CEO_Rahul
   "latency_ms": 36.45
 }
 ```
+=======
+# VERA-SIH-2026
+>>>>>>> origin/main

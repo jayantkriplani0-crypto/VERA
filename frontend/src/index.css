@@ -1,0 +1,10 @@
+@config "../tailwind.config.js";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: #06080D;
+  color: #F3F4F6;
+  -webkit-font-smoothing: antialiased;
+}

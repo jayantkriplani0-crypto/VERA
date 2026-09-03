@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+pydantic
+pydantic-settings
+sqlalchemy
+websockets
+python-multipart
+librosa
+soundfile
+numpy
+torch
+torchaudio
+transformers
