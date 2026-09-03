@@ -12,11 +12,11 @@ def test_risk_fusion_logic_all_signals():
     voice = {"voice_integrity_score": 0.9, "confidence": 0.95}  # Highly suspicious (deepfake) -> 0.9 * 0.4 = 0.36
     speaker = {"speaker_similarity_score": 0.1, "match": False, "confidence": 0.9} # Mismatch -> risk=0.9 * 0.2 = 0.18
     intent = {"social_engineering_score": 0.8, "signals": ["urgency"], "confidence": 0.8} # High intent -> 0.8 * 0.15 = 0.12
-    action = {"action_risk_score": 0.7, "context_risk_score": 0.7, "signals": ["auth_credential_request"], "confidence": 0.8} # High action -> 0.7 * 0.25 = 0.175
+    action = {"action_risk_score": 0.8, "context_risk_score": 0.8, "signals": ["auth_credential_request"], "confidence": 0.8} # High action -> 0.8 * 0.25 = 0.20
     
     res = calculate_risk(voice, speaker, intent, action)
     
-    assert res["overall_risk_score"] > 0.8
+    assert res["overall_risk_score"] >= 0.85
     assert res["risk_level"] == "critical"
     assert "speaker_mismatch" in res["contributing_signals"]
     assert "high_voice_manipulation_probability" in res["contributing_signals"]
