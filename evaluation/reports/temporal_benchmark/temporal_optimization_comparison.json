@@ -1,0 +1,58 @@
+{
+  "benchmark_context": {
+    "audio_stream_duration_sec": 12.0,
+    "total_windows_processed": 9,
+    "window_size_samples": 64600,
+    "hop_size_samples": 16000,
+    "model": "lab260/Spectra-AASIST3 (Frozen Checkpoint)",
+    "platt_calibration": "w=+1.218015, b=-3.388055 (Frozen Config)"
+  },
+  "metrics_comparison": {
+    "median_per_window_latency_ms": {
+      "before": 832.07,
+      "after": 827.11,
+      "improvement_ms": 4.96,
+      "percentage_change": "-0.60%"
+    },
+    "min_per_window_latency_ms": {
+      "before": 805.26,
+      "after": 783.73,
+      "improvement_ms": 21.53,
+      "percentage_change": "-2.67%"
+    },
+    "mean_per_window_latency_ms": {
+      "before": 830.74,
+      "after": 850.69,
+      "percentage_change": "2.40%"
+    },
+    "real_time_factor_rtf": {
+      "before": 0.6232,
+      "after": 0.6382,
+      "status": "Faster than real-time in both (RTF < 1.0)"
+    },
+    "peak_ram_mb": {
+      "before": 1831.1,
+      "after": 1814.9,
+      "reduction_mb": 16.2,
+      "percentage_change": "-0.88%"
+    },
+    "memory_delta_mb": {
+      "before": 1525.3,
+      "after": 1510.3,
+      "reduction_mb": 15.0
+    }
+  },
+  "optimizations_applied": [
+    "Pre-allocated contiguous ring buffer in RollingAudioBuffer (eliminating continuous np.concatenate allocations)",
+    "Pre-allocated in-place vector subtraction in apply_preemphasis (eliminating np.append temporary array creation)",
+    "Redundant apply_windowing bypass in RollingInferenceEngine (window length already verified 64,600 samples)",
+    "Batch window forward pass support (_run_forward_batch) in VoiceAuthenticityDetector",
+    "Safe int16-to-float32 scaling guard (>256.0 threshold) preventing accidental attenuation of normalized float signals"
+  ],
+  "correctness_and_governance": {
+    "model_weights_frozen": true,
+    "calibration_parameters_frozen": true,
+    "decision_boundary_frozen": true,
+    "all_78_tests_passing": true
+  }
+}

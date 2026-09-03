@@ -1,0 +1,5 @@
+sample_id,file_path,speaker_id,attack_type,language,split,ground_truth_label,ground_truth_binary,raw_score,predicted_label,is_correct,duration_sec,sample_rate_hz,latency_ms
+1,C:\Users\jayan\OneDrive\Desktop\VERA\evaluation\benchmark_data\audio\SPK_003_bonafide_1.wav,SPK_003,-,en,test,bonafide,1,-0.127507,BONA FIDE (Genuine Human Speech),True,3.0,16000,893.69
+2,C:\Users\jayan\OneDrive\Desktop\VERA\evaluation\benchmark_data\audio\SPK_003_spoof_2.wav,SPK_003,TTS-VITS,en,test,spoof,0,-4.817922,SPOOF / DEEPFAKE (Synthetic / Cloned Speech),True,3.0,16000,915.88
+3,C:\Users\jayan\OneDrive\Desktop\VERA\evaluation\benchmark_data\audio\SPK_003_bonafide_3.wav,SPK_003,-,en,test,bonafide,1,-0.127507,BONA FIDE (Genuine Human Speech),True,3.0,16000,853.56
+4,C:\Users\jayan\OneDrive\Desktop\VERA\evaluation\benchmark_data\audio\SPK_003_spoof_4.wav,SPK_003,VC-DiffVC,en,test,spoof,0,-4.902568,SPOOF / DEEPFAKE (Synthetic / Cloned Speech),True,3.0,16000,853.55

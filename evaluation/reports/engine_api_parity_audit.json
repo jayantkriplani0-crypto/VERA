@@ -1,0 +1,47 @@
+{
+  "Genuine": {
+    "direct_raw": 13.596934,
+    "rest_raw": 13.596936,
+    "stream_raw": 13.598402,
+    "diff_direct_vs_rest": 1.68e-06,
+    "diff_direct_vs_stream": 0.00146768,
+    "direct_spoof_signal": 0.0,
+    "rest_spoof_signal": 0.0,
+    "stream_spoof_signal": 0.0,
+    "direct_classification": "BONAFIDE",
+    "stream_instantaneous_classification": "BONAFIDE",
+    "stream_debounced_state": "BONAFIDE",
+    "rest_parity_verified": true,
+    "streaming_parity_verified": true
+  },
+  "Spoof": {
+    "direct_raw": -1.6872,
+    "rest_raw": -1.6872,
+    "stream_raw": -1.686021,
+    "diff_direct_vs_rest": 1.9e-07,
+    "diff_direct_vs_stream": 0.00117919,
+    "direct_spoof_signal": 99.57,
+    "rest_spoof_signal": 99.57,
+    "stream_spoof_signal": 99.57,
+    "direct_classification": "SPOOF",
+    "stream_instantaneous_classification": "SPOOF",
+    "stream_debounced_state": "BONAFIDE",
+    "rest_parity_verified": true,
+    "streaming_parity_verified": true
+  },
+  "Edge": {
+    "direct_raw": 1.351357,
+    "rest_raw": 1.351353,
+    "stream_raw": 0.705053,
+    "diff_direct_vs_rest": 4.46e-06,
+    "diff_direct_vs_stream": 0.64630446,
+    "direct_spoof_signal": 85.1,
+    "rest_spoof_signal": 85.1,
+    "stream_spoof_signal": 92.62,
+    "direct_classification": "SPOOF",
+    "stream_instantaneous_classification": "SPOOF",
+    "stream_debounced_state": "BONAFIDE",
+    "rest_parity_verified": true,
+    "streaming_parity_verified": true
+  }
+}

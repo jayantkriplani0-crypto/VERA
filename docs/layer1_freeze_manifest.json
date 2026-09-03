@@ -1,0 +1,147 @@
+{
+  "manifest_name": "VERA Layer 1 Voice Authenticity Model Freeze Manifest",
+  "version": "1.0.0",
+  "generated_at": "2026-09-03T17:55:30Z",
+  "status": "FROZEN_AND_AUDITED",
+  "environment": {
+    "python_version": "3.13.1",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "pytorch_version": "2.11.0+cpu",
+    "transformers_version": "5.16.1",
+    "numpy_version": "2.2.6",
+    "scipy_version": "1.16.2",
+    "soundfile_version": "0.14.0",
+    "fastapi_version": "0.116.2",
+    "pydantic_version": "2.11.9",
+    "uvicorn_version": "0.35.0"
+  },
+  "model_specification": {
+    "model_name": "Spectra-AASIST3",
+    "model_hub_repo": "lab260/Spectra-AASIST3",
+    "huggingface_url": "https://huggingface.co/lab260/Spectra-AASIST3",
+    "weights_status": "STRICTLY_FROZEN_PRETRAINED",
+    "fine_tuning_applied": false,
+    "architecture_modified": false,
+    "bonafide_class_index": 1,
+    "raw_score_semantics": "Unbounded real logit, higher means more bona fide"
+  },
+  "preprocessing_specification": {
+    "sampling_rate_hz": 16000,
+    "channel_count": 1,
+    "channel_mode": "mono_float32",
+    "preemphasis_coefficient": 0.97,
+    "preemphasis_formula": "y[0] = x[0], y[n] = x[n] - 0.97 * x[n-1]",
+    "window_size_samples": 64600,
+    "window_duration_seconds": 4.0375,
+    "windowing_policy": "tile_if_shorter_truncate_if_longer_no_random_crops"
+  },
+  "calibration_specification": {
+    "method": "PlattScaling",
+    "formula": "P(BonaFide | s) = 1 / (1 + exp(-(w * s + b)))",
+    "parameters": {
+      "slope_w": 1.218015,
+      "intercept_b": -3.388055
+    },
+    "calibrated_decision_boundary": {
+      "raw_logit_threshold": 2.781620,
+      "probability_threshold": 0.50,
+      "spoof_signal_threshold": 50.0
+    },
+    "scales": {
+      "voice_integrity_score": "P(BonaFide) * 100.0 (0-100, higher = more genuine)",
+      "calibrated_spoof_signal": "P(Spoof) * 100.0 (0-100, higher = more synthetic)",
+      "decision_confidence": "2.0 * abs(P(BonaFide) - 0.5) (0.0-1.0)"
+    },
+    "fit_dataset": "cal_fit_manifest.csv (420 samples, speakers LA_0069-LA_0074 only)",
+    "held_out_validation": "cal_val_manifest.csv (280 samples, speakers LA_0075-LA_0078)",
+    "eval_data_used_for_fitting": false
+  },
+  "temporal_streaming_specification": {
+    "window_size_samples": 64600,
+    "default_hop_size_samples": 16000,
+    "default_hop_duration_seconds": 1.0,
+    "overlap_percentage": 75.23,
+    "smoothing_method": "exponential_moving_average",
+    "smoothing_alpha": 0.35,
+    "hysteresis_states": {
+      "BONAFIDE": "Smoothed Spoof Signal < 35.0",
+      "SUSPICIOUS": "35.0 <= Smoothed Spoof Signal < 65.0",
+      "SPOOF": "Smoothed Spoof Signal >= 65.0"
+    },
+    "debounce_dwell_count": 2
+  },
+  "source_file_checksums": {
+    "ml/voice_detector/detector.py": {
+      "sha256": "8befbf5b96035323c6ed5f785dbab4c06f54ee578bcdf18c4b253e259a9ad2ad",
+      "size_bytes": 6705
+    },
+    "ml/voice_detector/model_loader.py": {
+      "sha256": "ccd65a90ded88c0635ac956f999cc075718b18040f6a8c76ca2a61cb5eed5e99",
+      "size_bytes": 1389
+    },
+    "ml/voice_detector/scorer.py": {
+      "sha256": "5dbd16bd82dddbc125640d673f01ce8beed29f79694de8999eedeee0d7095626",
+      "size_bytes": 3126
+    },
+    "ml/preprocessing/audio_loader.py": {
+      "sha256": "9be39c9de3c3ab52fff4252284d386ab320041f294ca8b928ba0725e80f95b5f",
+      "size_bytes": 3712
+    },
+    "ml/preprocessing/preprocessor.py": {
+      "sha256": "74977e1cfcca792abc26f6c2df01bb50ed9b2362887a68d9a52aa18081bad4c4",
+      "size_bytes": 3315
+    },
+    "calibration/config.json": {
+      "sha256": "fb8b15e70afe1d94f8b5ab32abc2fd0c0d4faaf26c3b18a141f681293f919a44",
+      "size_bytes": 2573
+    },
+    "calibration/apply_calibration.py": {
+      "sha256": "a22c9082f7aa416bce5afb11ca84643fa3b26a22c1245d4bd799e4a6ccce6484",
+      "size_bytes": 9844
+    },
+    "calibration/calibrate.py": {
+      "sha256": "a44300c99ca097c67485bea7920197af9040cb8289795fc54384d6415263c701",
+      "size_bytes": 38351
+    },
+    "ml/temporal/rolling_buffer.py": {
+      "sha256": "0fc7285fc63f36ac5241927963b0a6a76dd398b73e4c3ceef7e039b701361a83",
+      "size_bytes": 8884
+    },
+    "ml/temporal/smoother.py": {
+      "sha256": "83af3b9f50656db155b3ee16f37bafb3434394203c5769a7b62d094cd4ad6c2f",
+      "size_bytes": 3670
+    },
+    "ml/temporal/state_machine.py": {
+      "sha256": "ca85d4f9d2e939e114b2ecb9039ff86da15fccbfc168dd24120b7d20159dfef7",
+      "size_bytes": 5263
+    },
+    "ml/temporal/engine.py": {
+      "sha256": "4f826bd7f5436dd903d5f6ce5b1d88c327a3698db410ad9e7d2ac95ca8d37151",
+      "size_bytes": 10028
+    },
+    "api/app.py": {
+      "sha256": "18d080a6caa1b095f301b4b5c5e3451aa5c0f63597f96e284c736b5aa1942357",
+      "size_bytes": 2041
+    },
+    "api/schemas.py": {
+      "sha256": "10f04652daa932f356364215f855658285103890c334b2c3d58d22d3bd6d7d8b",
+      "size_bytes": 4968
+    },
+    "api/services/voice_service.py": {
+      "sha256": "55d41a09e595a7a4ba7d3a415c7bdfe923728b0463d73f33a11f3278af318cdd",
+      "size_bytes": 8856
+    },
+    "api/dependencies.py": {
+      "sha256": "b7c3dad3478cd4fe88cbe1f856c667c5b9eb900a59537c6d801027280e77a4ad",
+      "size_bytes": 875
+    },
+    "api/routes/health.py": {
+      "sha256": "0a786ef52992a449edd526e48025034de1c130ff09b99c92ff7791e3d174ee13",
+      "size_bytes": 1121
+    },
+    "api/routes/voice.py": {
+      "sha256": "5c805f211ec8bd185bc6d54b279412009e986068819eed61f6afdf101b2c160b",
+      "size_bytes": 5736
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "Genuine": {
+    "raw_score": 13.596936225891113,
+    "p_bonafide": 1.0,
+    "p_spoof": 0.0,
+    "spoof_signal": 0.0,
+    "voice_integrity": 100.0,
+    "confidence": 1.0,
+    "temporal_state": "BONAFIDE",
+    "max_discrepancy": 0.0,
+    "reproducible": true
+  },
+  "Spoof": {
+    "raw_score": -1.6872005462646484,
+    "p_bonafide": 0.0043,
+    "p_spoof": 0.9957,
+    "spoof_signal": 99.57,
+    "voice_integrity": 0.43,
+    "confidence": 0.9914,
+    "temporal_state": "BONAFIDE",
+    "max_discrepancy": 0.0,
+    "reproducible": true
+  },
+  "Edge": {
+    "raw_score": 1.3513518571853638,
+    "p_bonafide": 0.149,
+    "p_spoof": 0.851,
+    "spoof_signal": 85.1,
+    "voice_integrity": 14.9,
+    "confidence": 0.7019,
+    "temporal_state": "BONAFIDE",
+    "max_discrepancy": 0.0,
+    "reproducible": true
+  }
+}
