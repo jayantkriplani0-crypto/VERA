@@ -20,6 +20,15 @@ data/pretrained_models/
 # Cached embeddings
 data/enrolled_speakers/*.npy
 
+# Databases and local runtime storage
+*.db
+*.sqlite
+*.sqlite3
+data/*.db
+backend/data/*.db
+data/vera.db
+backend/data/vera.db
+
 # C extensions
 *.so
 
